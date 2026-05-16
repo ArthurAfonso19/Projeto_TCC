@@ -6,8 +6,7 @@ public class ConstrutorArmazem : MonoBehaviour
     void Start()
     {
         GameObject chao = GameObject.CreatePrimitive(PrimitiveTypeCode.Cube);
-
-        chao.name = "Piso_Armazem";
         
+        chao.name = "Piso_Armazem";
     }
 }
