@@ -438,6 +438,7 @@
 "Assets/Scripts/Data/DataManager.cs"
 "Assets/Scripts/UI/GerenciadoMenuPausa.cs"
 "Assets/Scripts/UI/GerenciadorLoad.cs"
+"Assets/Scripts/UI/GerenciarSetores.cs"
 "Assets/Scripts/UI/MenuConfig3D.cs"
 "Assets/Scripts/UI/SairMenuInicial.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/Benchmark01.cs"

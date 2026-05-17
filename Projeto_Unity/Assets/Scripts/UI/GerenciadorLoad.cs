@@ -9,12 +9,16 @@ public class GerenciadorLoad : MonoBehaviour
     [SerializeField] private GameObject botaoSavePrefab; 
     [SerializeField] private Transform containerBotoes; 
 
-    [Header("Painel de Ações (Novos Botões)")]
-    [SerializeField] private GameObject painelAcoes; // Opcional: Um grupo ou painel que engloba os botões abaixo
-    [SerializeField] private Button botaoCarregar;
-    [SerializeField] private Button botaoExcluir;
+    [Header("Botões de Ação (Independentes)")]
+    [SerializeField] private GameObject objetoRaizCarregar; 
+    [SerializeField] private GameObject objetoRaizExcluir;
+
+    [Header("Customização Visual")]
+    [SerializeField] private Color corNormal = Color.white; // Cor padrão do miolo do botão
+    [SerializeField] private Color corSelecionado = new Color(0.7f, 0.85f, 1f); // Azul claro (exemplo)
 
     private string saveSelecionado = "";
+    private Image imagemBotaoAnterior = null;
 
     private void Start()
     {
@@ -24,6 +28,7 @@ public class GerenciadorLoad : MonoBehaviour
     {
         painelLoad.SetActive(true);
         saveSelecionado = "";
+        imagemBotaoAnterior = null;
         ConfigurarBotoesAcao(false);
 
         foreach(Transform filho in containerBotoes)
@@ -38,13 +43,31 @@ public class GerenciadorLoad : MonoBehaviour
             novoBotao.GetComponentInChildren<TextMeshProUGUI>().text = nomeSave;
 
             string nomeTemporario = nomeSave;
-            novoBotao.GetComponent<Button>().onClick.AddListener(() => SelecionarSave(nomeTemporario));
+            Button botaoComponente = novoBotao.GetComponent<Button>() ?? novoBotao.GetComponentInChildren<Button>();
+
+            if(botaoComponente != null)
+            {
+                Image imgBotao = botaoComponente.targetGraphic as Image;
+                botaoComponente.onClick.AddListener(() => SelecionarSave(nomeTemporario, imgBotao));
+            }
         }
     }
 
-    private void SelecionarSave(string nomeDoSave)
+    private void SelecionarSave(string nomeDoSave, Image imgBotao)
     {
         saveSelecionado = nomeDoSave;
+
+        if(imagemBotaoAnterior != null)
+        {
+            imagemBotaoAnterior.color = corNormal;
+        }
+
+        if(imgBotao != null)
+        {
+            imgBotao.color = corSelecionado;
+            imagemBotaoAnterior = imgBotao;    
+        }
+
         ConfigurarBotoesAcao(true);
     }
 
@@ -76,7 +99,7 @@ public class GerenciadorLoad : MonoBehaviour
 
         foreach (string s in savesAtuais)
         {
-            if(s != nomeParaRemover && !string.IsNullOrEmpty(s));
+            if(s != nomeParaRemover && !string.IsNullOrEmpty(s))
             {
                 novaLista.Add(s);    
             }
@@ -88,9 +111,8 @@ public class GerenciadorLoad : MonoBehaviour
     }
     private void ConfigurarBotoesAcao (bool estado)
     {
-        if (painelAcoes != null) painelAcoes.SetActive(estado);
-        if (botaoCarregar != null) botaoCarregar.interactable = estado;
-        if (botaoExcluir != null) botaoExcluir.interactable = estado;
+        if (objetoRaizCarregar != null) objetoRaizCarregar.SetActive(estado);
+        if (objetoRaizExcluir != null) objetoRaizExcluir.SetActive(estado);
     }
 
 }
