@@ -7,6 +7,7 @@ public class DataManager
     public static float Comprimento;
     public static float Altura;
 
+    //public static List<DadosSetor> Setores = new List<DadosSetor>();
     private const string LISTA_SAVES_KEY = "ListaDeArmazens";
 
     public static void SalvarDados(String nomeDoSave)

@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/CenaArmazem.unity
-    guid: c6e3e193ead83284cb65e2093179f8a0
-  - enabled: 1
     path: Assets/Scenes/MenuInicial.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/CenaArmazem.unity
+    guid: c6e3e193ead83284cb65e2093179f8a0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}

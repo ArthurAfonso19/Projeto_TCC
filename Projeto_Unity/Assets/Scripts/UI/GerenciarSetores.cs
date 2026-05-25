@@ -60,7 +60,6 @@ public class GerenciarSetores : MonoBehaviour
     {
         popupNovoSetor.SetActive(false);
     }
-
     public void SalvarNovoSetor()
     {
         string nomeDoSetor = inputNomeSetor.text.Trim();
